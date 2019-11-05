@@ -2,7 +2,11 @@ package com.example.assignment2;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
@@ -41,38 +45,18 @@ public class MainActivity extends AppCompatActivity {
 
         boolean isIns = myDB.insertData(username, email, phoneNum);
 
-        if (isIns = true){
+        if (isIns = true) {
             Toast.makeText(this, "Data Inserted ", Toast.LENGTH_LONG).show();
-        }else{
-            Toast.makeText(this, "Data Not Inserted ", Toast.LENGTH_LONG).show();}
-
-    }
-
-    public void viewAll(View view){
-        Cursor res = myDB.getAllData();
-        if(res.getCount()==0)
-        {
-            //show message
-            showMessage("ERROR", "Nothing Found");
-            return;
+        } else {
+            Toast.makeText(this, "Data Not Inserted ", Toast.LENGTH_LONG).show();
         }
-        else{
-            StringBuffer buffer = new StringBuffer();
-            while(res.moveToNext()){
-                buffer.append("ID:" + res.getString(0)+ "\n");
-                buffer.append("USERNAME:" + res.getString(1)+ "\n");
-                buffer.append("EMAIL:" + res.getString(2)+ "\n");
-                buffer.append("PHONENUM:" + res.getString(3)+ "\n \n");
-                showMessage("SUCCESS", buffer.toString());
-            }
-        }
+
     }
 
-    public void showMessage (String title, String message){
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setCancelable(true);
-        builder.setTitle(title);
-        builder.setMessage(message);
-        builder.show();
+    public void viewAll(View view) {
+        Intent intent = new Intent(MainActivity.this, ShowFriends.class);
+        startActivity(intent);
     }
+
+
 }
