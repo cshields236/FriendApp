@@ -33,5 +33,9 @@ public class Launch extends AppCompatActivity {
         Intent intent;
         startActivity(intent = new Intent(this, ShowFriends.class));
     }
+    public void Update (View view){
+        Intent intent;
+        startActivity(intent = new Intent(this, UpdateActivity.class));
+    }
 
 }

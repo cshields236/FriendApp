@@ -46,17 +46,21 @@ public class MainActivity extends AppCompatActivity {
         boolean isIns = myDB.insertData(username, email, phoneNum);
 
         if (isIns = true) {
-            Toast.makeText(this, "Data Inserted ", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Friend Added ", Toast.LENGTH_LONG).show();
+            un.setText("");
+            em.setText("");
+            pn.setText("");
+
         } else {
             Toast.makeText(this, "Data Not Inserted ", Toast.LENGTH_LONG).show();
         }
 
+
     }
 
-    public void viewAll(View view) {
-        Intent intent = new Intent(MainActivity.this, ShowFriends.class);
-        startActivity(intent);
-    }
+
+
+
 
 
 }
