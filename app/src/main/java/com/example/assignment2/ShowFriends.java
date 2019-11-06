@@ -28,7 +28,7 @@ public class ShowFriends extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
-        ArrayList<String> myDataSet = new ArrayList<String>();
+
         Cursor res = myDB.getAllData();
         if(res.getCount()==0)
         {
@@ -39,18 +39,17 @@ public class ShowFriends extends AppCompatActivity {
         else{
             StringBuffer buffer = new StringBuffer();
             while(res.moveToNext()){
-                buffer.append("ID:" + res.getString(0)+ "\n");
-                buffer.append("USERNAME:" + res.getString(1)+ "\n");
-                buffer.append("EMAIL:" + res.getString(2)+ "\n");
-                buffer.append("PHONENUM:" + res.getString(3)+ "\n \n");
-                showMessage("SUCCESS", buffer.toString());
+//                buffer.append("ID:" + res.getString(0)+ "\n");
+//                buffer.append("USERNAME:" + res.getString(1)+ "\n");
+//                buffer.append("EMAIL:" + res.getString(2)+ "\n");
+//                buffer.append("PHONENUM:" + res.getString(3)+ "\n \n");
+                //showMessage("SUCCESS", buffer.toString());
+                Friend friend = new Friend( res.getString(1),res.getString(2),Integer.parseInt(res.getString(3)));
+                friends.add(friend);
             }
         }
-        for (int i = 1; i < 5; i++) {
-            myDataSet.add("items" + i);
 
-        }
-        MyAdapter adapter = new MyAdapter(myDataSet);
+        MyAdapter adapter = new MyAdapter(friends);
         recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
         recyclerView.setAdapter(adapter);
 

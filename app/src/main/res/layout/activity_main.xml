@@ -72,7 +72,7 @@
         android:layout_marginStart="162dp"
         android:layout_marginTop="21dp"
         android:onClick="viewAll"
-        android:text="Button"
+        android:text="View all firiends "
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button" />
 
