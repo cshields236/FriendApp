@@ -43,19 +43,32 @@ public class DatabseHelper extends SQLiteOpenHelper {
         }
     }
 
-    public Cursor getAllData(){
+    public Cursor getAllData() {
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor res = db.rawQuery("select * from " + TABLE_NAME, null);
-        return  res;
+        return res;
+    }
+//
+    public Cursor searchByUsername(String username) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor res = db.rawQuery("select * from " + TABLE_NAME+ " where USERNAME MATCH" + username + ";", null );
+        return res;
     }
 
-    public boolean updateData(String username,String email,String phoneNum) {
+//    public Cursor searchByNumber(int number) {
+//        SQLiteDatabase db = this.getWritableDatabase();
+//        Cursor res = db.rawQuery(, null);
+//        Cursor res = db.execSQL("select * from " + TABLE_NAME + "(" + number + ")");
+//        return res;
+//    }
+
+    public boolean updateData(String username, String email, String phoneNum) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("USERNAME", username);
         contentValues.put("EMAIL", email);
         contentValues.put("PHONENUM", phoneNum);
-        db.update(TABLE_NAME, contentValues, "USERNAME = ?",new String[] { username });
+        db.update(TABLE_NAME, contentValues, "USERNAME = ?", new String[]{username});
         return true;
     }
 }

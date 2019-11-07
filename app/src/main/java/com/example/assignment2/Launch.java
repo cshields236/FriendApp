@@ -37,5 +37,9 @@ public class Launch extends AppCompatActivity {
         Intent intent;
         startActivity(intent = new Intent(this, UpdateActivity.class));
     }
+    public void Search (View view){
+        Intent intent;
+        startActivity(intent = new Intent(this, SearchActivity.class));
+    }
 
 }
