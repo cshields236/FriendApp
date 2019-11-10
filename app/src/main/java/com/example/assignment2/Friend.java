@@ -42,10 +42,9 @@ public class Friend {
 
     @Override
     public String toString() {
-        return "Friend{" +
-                "username='" + username + '\'' +
-                ", email='" + email + '\'' +
-                ", phoneNum=" + phoneNum +
-                '}';
+        return
+                "Username: " + username + '\n' +
+                "Email: " + email + '\n' +
+                "Phone Number: " + phoneNum + '\n';
     }
 }

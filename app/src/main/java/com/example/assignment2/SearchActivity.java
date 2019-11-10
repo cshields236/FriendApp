@@ -28,8 +28,9 @@ public class SearchActivity extends AppCompatActivity {
         DatabseHelper databaseHelper = new DatabseHelper(getApplicationContext());
         List<Friend> friendList = databaseHelper.search(username);
         if (friendList != null) {
-            showMessage("Success!", friendList.toString());
+            showMessage("Success! Friend Found ", "Username: " + friendList.get(0).getUsername() + "\nEmail: "+ friendList.get(0).getEmail() + "\nPhone Number: "+  friendList.get(0).getPhoneNum()  );
         }
+        else{showMessage("Failure", "You do not have a friend that matches these details ");}
     }
 //    public void findByUsername(View view){
 //

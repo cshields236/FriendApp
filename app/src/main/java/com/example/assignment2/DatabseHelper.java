@@ -70,9 +70,9 @@ public class DatabseHelper extends SQLiteOpenHelper {
                 friends = new ArrayList<Friend>();
                 do {
                     Friend f = new Friend();
-                    f.setUsername(cursor.getString(0));
-                    f.setEmail(cursor.getString(1));
-                    f.setPhoneNum(cursor.getInt(2));
+                    f.setUsername(cursor.getString(1));
+                    f.setEmail(cursor.getString(2));
+                    f.setPhoneNum(cursor.getInt(3));
 
                     friends.add(f);
                 } while (cursor.moveToNext());
