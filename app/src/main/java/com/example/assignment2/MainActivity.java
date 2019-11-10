@@ -48,50 +48,47 @@ public class MainActivity extends AppCompatActivity {
         String phoneNum = pn.getText().toString();
 
 
-        Cursor res = myDB.getAllData();
-        if (res.getCount() == 0) {
+//        Cursor res = myDB.getAllData();
+//        if (res.getCount() == 0) {
+//
+//            Toast.makeText(this, "Nothing Found", Toast.LENGTH_LONG).show();
+//
+//        } else {
+//            StringBuffer buffer = new StringBuffer();
+//            while (res.moveToNext()) {
+//
+//                Friend friend = new Friend(res.getString(1), res.getString(2), Integer.parseInt(res.getString(3)));
+//                friendsFromDB.add(friend);
+//            }
 
-            Toast.makeText(this, "Nothing Found", Toast.LENGTH_LONG).show();
-            return;
+
+        if (username.isEmpty() || email.isEmpty() || phoneNum.isEmpty()) {
+            Toast.makeText(this, "Data Not Inserted, Please enter all details  ", Toast.LENGTH_LONG).show();
+
+        } else if (username.contains(" ") || email.contains(" ")) {
+            Toast.makeText(this, "Data Not Inserted, username or email must not contain spaces", Toast.LENGTH_LONG).show();
+
+        } else if (!email.matches("^(.+)@(.+)")) {
+            Toast.makeText(this, "Data Not Inserted, email must be formatted correctly", Toast.LENGTH_LONG).show();
+            em.setError("Email must be formatted correctly");
         } else {
-            StringBuffer buffer = new StringBuffer();
-            while (res.moveToNext()) {
+            Friend f1 = new Friend(username, email, Integer.parseInt(phoneNum));
+            friends.add(f1);
+            if (friendsFromDB.contains(f1)) {
 
-                Friend friend = new Friend(res.getString(1), res.getString(2), Integer.parseInt(res.getString(3)));
-                friendsFromDB.add(friend);
-            }
-
-
-            if (username.isEmpty() || email.isEmpty() || phoneNum.isEmpty()) {
-                Toast.makeText(this, "Data Not Inserted, Please enter all details  ", Toast.LENGTH_LONG).show();
-
-            } else if (username.contains(" ") || email.contains(" ")) {
-                Toast.makeText(this, "Data Not Inserted, username or email must not contain spaces", Toast.LENGTH_LONG).show();
-
-            } else if (!email.matches("^(.+)@(.+)")) {
-                Toast.makeText(this, "Data Not Inserted, email must be formatted correctly", Toast.LENGTH_LONG).show();
-                em.setError("Email must be formatted correctly");
+                Toast.makeText(this, "Friend already in database", Toast.LENGTH_LONG).show();
             } else {
-                Friend f1 = new Friend(username, email, Integer.parseInt(phoneNum));
-                friends.add(f1);
-                if (friendsFromDB.contains(f1)) {
-
-                    Toast.makeText(this, "Friend already in database", Toast.LENGTH_LONG).show();
-                } else {
-                    myDB.insertData(username, email, Integer.parseInt(phoneNum));
-                    Toast.makeText(this, username + " Added to your Friends List!", Toast.LENGTH_LONG).show();
-                    un.setText("");
-                    em.setText("");
-                    pn.setText("");
-                }
+                myDB.insertData(username, email, Integer.parseInt(phoneNum));
+                Toast.makeText(this, username + " Added to your Friends List!", Toast.LENGTH_LONG).show();
+                un.setText("");
+                em.setText("");
+                pn.setText("");
             }
-
-
         }
 
 
     }
 
-    public void Return (View v)
-    {  startActivity(new Intent(this, Launch.class));}
 }
+
+

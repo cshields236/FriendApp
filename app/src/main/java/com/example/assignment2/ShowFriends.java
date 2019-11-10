@@ -30,6 +30,7 @@ public class ShowFriends extends AppCompatActivity implements MyAdapter.OnFriend
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
 
         ActionBar actionBar = getSupportActionBar();
+
         actionBar.setTitle("All Your Friends!");
 
         recyclerView.setHasFixedSize(true);
@@ -41,16 +42,13 @@ public class ShowFriends extends AppCompatActivity implements MyAdapter.OnFriend
         {
             //show message
             showMessage("ERROR", "Nothing Found");
+         //   startActivity(new Intent(this, Launch.class));
             return;
         }
         else{
             StringBuffer buffer = new StringBuffer();
             while(res.moveToNext()){
-//                buffer.append("ID:" + res.getString(0)+ "\n");
-//                buffer.append("USERNAME:" + res.getString(1)+ "\n");
-//                buffer.append("EMAIL:" + res.getString(2)+ "\n");
-//                buffer.append("PHONENUM:" + res.getString(3)+ "\n \n");
-                //showMessage("SUCCESS", buffer.toString());
+
                 Friend friend = new Friend( res.getString(1),res.getString(2),Integer.parseInt(res.getString(3)));
                 friends.add(friend);
             }
