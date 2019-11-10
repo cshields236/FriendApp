@@ -30,8 +30,6 @@ public class UpdateActivity extends AppCompatActivity {
         if (getIntent().hasExtra("selected_friend")) {
             Friend f = getIntent().getParcelableExtra("selected_friend");
 
-            Toast.makeText(this, f.toString(), Toast.LENGTH_LONG).show();
-
 
             un.setText(f.getUsername());
             em.setText(f.getEmail());
@@ -54,7 +52,7 @@ public class UpdateActivity extends AppCompatActivity {
 
         if (isUpdate == true) {
             Toast.makeText(UpdateActivity.this, "Data Update", Toast.LENGTH_LONG).show();
-           startActivity(new Intent(this, ShowFriends.class));
+            startActivity(new Intent(this, ShowFriends.class));
         } else {
             Toast.makeText(UpdateActivity.this, "Data not Updated", Toast.LENGTH_LONG).show();
         }

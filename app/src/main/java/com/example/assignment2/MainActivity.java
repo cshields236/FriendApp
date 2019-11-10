@@ -73,11 +73,11 @@ public class MainActivity extends AppCompatActivity {
             friends.add(f1);
             if (byUsername != null) {
 
-                Toast.makeText(this, "Friend With This Username Already Added", Toast.LENGTH_LONG).show();
+              un.setError("Friend With This Username Already Added");
             }else if (byNumber != null){
-                Toast.makeText(this, "Number already In use", Toast.LENGTH_LONG).show();
+                pn.setError( "Number already In use");
             }else if (byEmail != null){
-                Toast.makeText(this, "Email Already In Use", Toast.LENGTH_LONG).show();
+                em.setError("Email Already In Use");
             }
             else {
                 myDB.insertData(username, email, Integer.parseInt(phoneNum));
