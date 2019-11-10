@@ -10,8 +10,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
+import java.util.List;
+
 public class SearchActivity extends AppCompatActivity {
     DatabseHelper myDB;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,31 +22,42 @@ public class SearchActivity extends AppCompatActivity {
         myDB = new DatabseHelper(this);
     }
 
-    public void findByUsername(View view){
-
+    public void findByUsername(View view) {
         EditText uSearch = findViewById(R.id.unSearch);
-        String username = uSearch.getText().toString();
-        Cursor res = myDB.searchByUsername(username);
-
-        if(res.getCount()==0)
-        {
-            //show message
-            showMessage("ERROR", "Nothing Found");
-            return;
+         String username = uSearch.getText().toString();
+        DatabseHelper databaseHelper = new DatabseHelper(getApplicationContext());
+        List<Friend> friendList = databaseHelper.search(username);
+        if (friendList != null) {
+            showMessage("Success!", friendList.toString());
         }
-        else{
-            StringBuffer buffer = new StringBuffer();
-            while(res.moveToNext()){
-                buffer.append("ID:" + res.getString(0)+ "\n");
-                buffer.append("USERNAME:" + res.getString(1)+ "\n");
-                buffer.append("EMAIL:" + res.getString(2)+ "\n");
-                buffer.append("PHONENUM:" + res.getString(3)+ "\n \n");
-                showMessage("SUCCESS", buffer.toString());
-
-            }
-        }
-
     }
+//    public void findByUsername(View view){
+//
+//
+//
+//        EditText uSearch = findViewById(R.id.unSearch);
+//        String username = uSearch.getText().toString();
+//        Cursor res = myDB.searchByUsername(username);
+//
+//        if(res.getCount()==0)
+//        {
+//            //show message
+//            showMessage("ERROR", "Nothing Found");
+//            return;
+//        }
+//        else{
+//            StringBuffer buffer = new StringBuffer();
+//            while(res.moveToNext()){
+//                buffer.append("ID:" + res.getString(0)+ "\n");
+//                buffer.append("USERNAME:" + res.getString(1)+ "\n");
+//                buffer.append("EMAIL:" + res.getString(2)+ "\n");
+//                buffer.append("PHONENUM:" + res.getString(3)+ "\n \n");
+//                showMessage("SUCCESS", buffer.toString());
+//
+//            }
+//        }
+//
+//    }
 
     public void showMessage(String title, String message) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);

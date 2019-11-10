@@ -6,6 +6,9 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class DatabseHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "FriendsDB";
@@ -49,10 +52,35 @@ public class DatabseHelper extends SQLiteOpenHelper {
         return res;
     }
 //
-    public Cursor searchByUsername(String username) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        Cursor res = db.rawQuery("select * from " + TABLE_NAME+ " where USERNAME MATCH" + username + ";", null );
-        return res;
+//    public Cursor searchByUsername(String username) {
+//        SQLiteDatabase db = this.getWritableDatabase();
+//        Cursor res = db.rawQuery("select * from friend_table where USERNAME MATCH " +  String.valueOf(new String[]{username}), null);
+//db.query()
+//
+//        return res;
+//    }
+
+
+    public List<Friend> search(String username) {
+        List<Friend> friends = null;
+        try {
+            SQLiteDatabase sqLiteDatabase = getReadableDatabase();
+            Cursor cursor = sqLiteDatabase.rawQuery("select * from " + TABLE_NAME + " where username" + " like ?", new String[]{"%" + username + "%"});
+            if (cursor.moveToFirst()) {
+                friends = new ArrayList<Friend>();
+                do {
+                    Friend f = new Friend();
+                    f.setUsername(cursor.getString(0));
+                    f.setEmail(cursor.getString(1));
+                    f.setPhoneNum(cursor.getInt(2));
+
+                    friends.add(f);
+                } while (cursor.moveToNext());
+            }
+        } catch (Exception e) {
+            friends = null;
+        }
+        return friends;
     }
 
 //    public Cursor searchByNumber(int number) {
