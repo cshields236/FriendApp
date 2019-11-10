@@ -24,41 +24,32 @@ public class SearchActivity extends AppCompatActivity {
 
     public void findByUsername(View view) {
         EditText uSearch = findViewById(R.id.unSearch);
-         String username = uSearch.getText().toString();
+        String username = uSearch.getText().toString();
         DatabseHelper databaseHelper = new DatabseHelper(getApplicationContext());
-        List<Friend> friendList = databaseHelper.search(username);
+        List<Friend> friendList = databaseHelper.searchByUsername(username);
         if (friendList != null) {
-            showMessage("Success! Friend Found ", "Username: " + friendList.get(0).getUsername() + "\nEmail: "+ friendList.get(0).getEmail() + "\nPhone Number: "+  friendList.get(0).getPhoneNum()  );
+            showMessage("Success! Friend Found ", "Username: " + friendList.get(0).getUsername() + "\nEmail: " + friendList.get(0).getEmail() + "\nPhone Number: " + friendList.get(0).getPhoneNum());
+        } else {
+            showMessage("Failure", "You do not have a friend that matches these details ");
         }
-        else{showMessage("Failure", "You do not have a friend that matches these details ");}
+
+
     }
-//    public void findByUsername(View view){
-//
-//
-//
-//        EditText uSearch = findViewById(R.id.unSearch);
-//        String username = uSearch.getText().toString();
-//        Cursor res = myDB.searchByUsername(username);
-//
-//        if(res.getCount()==0)
-//        {
-//            //show message
-//            showMessage("ERROR", "Nothing Found");
-//            return;
-//        }
-//        else{
-//            StringBuffer buffer = new StringBuffer();
-//            while(res.moveToNext()){
-//                buffer.append("ID:" + res.getString(0)+ "\n");
-//                buffer.append("USERNAME:" + res.getString(1)+ "\n");
-//                buffer.append("EMAIL:" + res.getString(2)+ "\n");
-//                buffer.append("PHONENUM:" + res.getString(3)+ "\n \n");
-//                showMessage("SUCCESS", buffer.toString());
-//
-//            }
-//        }
-//
-//    }
+
+    public void findByNumber(View view) {
+        EditText uNumber = findViewById(R.id.numSearch);
+        String number = uNumber.getText().toString();
+        DatabseHelper databaseHelper = new DatabseHelper(getApplicationContext());
+        List<Friend> friendList = databaseHelper.searchByNumber(number);
+        if (friendList != null) {
+            showMessage("Success! Friend Found ", "Username: " + friendList.get(0).getUsername() + "\nEmail: " + friendList.get(0).getEmail() + "\nPhone Number: " + friendList.get(0).getPhoneNum());
+        } else {
+            showMessage("Failure", "You do not have a friend that matches these details ");
+        }
+
+
+    }
+
 
     public void showMessage(String title, String message) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);

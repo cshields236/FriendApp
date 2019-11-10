@@ -6,13 +6,17 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.os.Parcelable;
+import android.util.Log;
 import android.view.View;
 
 import java.util.ArrayList;
 
-public class ShowFriends extends AppCompatActivity {
+public class ShowFriends extends AppCompatActivity implements MyAdapter.OnFriendListener {
+    private static final String TAG = "CLICKED";
     DatabseHelper myDB;
     Friend friend;
     ArrayList<Friend> friends = new ArrayList<>();
@@ -49,7 +53,7 @@ public class ShowFriends extends AppCompatActivity {
             }
         }
 
-        MyAdapter adapter = new MyAdapter(friends);
+        MyAdapter adapter = new MyAdapter(friends, this);
         recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
         recyclerView.setAdapter(adapter);
 
@@ -66,4 +70,15 @@ public class ShowFriends extends AppCompatActivity {
     }
 
 
+    @Override
+    public void onFriendClick(int position) {
+        friends.get(position);
+
+        Intent intent = new Intent(this, UpdateActivity.class);
+        intent.putExtra("selected_friend", friends.get(position));
+
+        startActivity(intent);
+
+        Log.d(TAG, "onFriendClick: " + friends.get(position).getUsername());
+    }
 }

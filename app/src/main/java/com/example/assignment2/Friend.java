@@ -1,6 +1,9 @@
 package com.example.assignment2;
 
-public class Friend {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Friend implements Parcelable {
 
     private String username;
     private String email;
@@ -15,6 +18,24 @@ public class Friend {
     public Friend() {
     }
 
+
+    protected Friend(Parcel in) {
+        username = in.readString();
+        email = in.readString();
+        phoneNum = in.readInt();
+    }
+
+    public static final Creator<Friend> CREATOR = new Creator<Friend>() {
+        @Override
+        public Friend createFromParcel(Parcel in) {
+            return new Friend(in);
+        }
+
+        @Override
+        public Friend[] newArray(int size) {
+            return new Friend[size];
+        }
+    };
 
     public String getUsername() {
         return username;
@@ -46,5 +67,17 @@ public class Friend {
                 "Username: " + username + '\n' +
                 "Email: " + email + '\n' +
                 "Phone Number: " + phoneNum + '\n';
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(username);
+        dest.writeString(email);
+        dest.writeInt(phoneNum);
     }
 }

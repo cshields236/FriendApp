@@ -2,6 +2,7 @@ package com.example.assignment2;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -9,20 +10,40 @@ import android.widget.Toast;
 
 public class UpdateActivity extends AppCompatActivity {
     DatabseHelper myDB;
+    TextView un;
+    TextView em;
+    TextView pn;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update);
         myDB = new DatabseHelper(this);
 
+        un = findViewById(R.id.txtUsername);
+        em = findViewById(R.id.txtEmail);
+        pn = findViewById(R.id.txtNumber);
+        if (getIntent().hasExtra("selected_friend")) {
+            Friend f = getIntent().getParcelableExtra("selected_friend");
+
+            Toast.makeText(this, f.toString(), Toast.LENGTH_LONG).show();
+
+
+            un.setText(f.getUsername());
+            em.setText(f.getEmail());
+            pn.setText(String.valueOf(f.getPhoneNum()));
+
+
+        }
 
     }
 
     public void updateData(View view) {
 
-        TextView un = findViewById(R.id.txtUsername);
-        TextView em = findViewById(R.id.txtEmail);
-        TextView pn = findViewById(R.id.txtNumber);
+        un = findViewById(R.id.txtUsername);
+        em = findViewById(R.id.txtEmail);
+        pn = findViewById(R.id.txtNumber);
         boolean isUpdate = myDB.updateData(
                 un.getText().toString(),
                 em.getText().toString(),

@@ -51,17 +51,9 @@ public class DatabseHelper extends SQLiteOpenHelper {
         Cursor res = db.rawQuery("select * from " + TABLE_NAME, null);
         return res;
     }
-//
-//    public Cursor searchByUsername(String username) {
-//        SQLiteDatabase db = this.getWritableDatabase();
-//        Cursor res = db.rawQuery("select * from friend_table where USERNAME MATCH " +  String.valueOf(new String[]{username}), null);
-//db.query()
-//
-//        return res;
-//    }
 
 
-    public List<Friend> search(String username) {
+    public List<Friend> searchByUsername(String username) {
         List<Friend> friends = null;
         try {
             SQLiteDatabase sqLiteDatabase = getReadableDatabase();
@@ -83,12 +75,29 @@ public class DatabseHelper extends SQLiteOpenHelper {
         return friends;
     }
 
-//    public Cursor searchByNumber(int number) {
-//        SQLiteDatabase db = this.getWritableDatabase();
-//        Cursor res = db.rawQuery(, null);
-//        Cursor res = db.execSQL("select * from " + TABLE_NAME + "(" + number + ")");
-//        return res;
-//    }
+    public List<Friend> searchByNumber(String number) {
+        List<Friend> friends = null;
+        try {
+            SQLiteDatabase sqLiteDatabase = getReadableDatabase();
+            Cursor cursor = sqLiteDatabase.rawQuery("select * from " + TABLE_NAME + " where phoneNum" + " like ?", new String[]{"%" + number + "%"});
+            if (cursor.moveToFirst()) {
+                friends = new ArrayList<Friend>();
+                do {
+                    Friend f = new Friend();
+                    f.setUsername(cursor.getString(1));
+                    f.setEmail(cursor.getString(2));
+                    f.setPhoneNum(cursor.getInt(3));
+
+                    friends.add(f);
+                } while (cursor.moveToNext());
+            }
+        } catch (Exception e) {
+            friends = null;
+        }
+        return friends;
+    }
+
+
 
     public boolean updateData(String username, String email, String phoneNum) {
         SQLiteDatabase db = this.getWritableDatabase();
