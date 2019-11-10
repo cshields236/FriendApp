@@ -14,7 +14,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-
         <EditText
             android:id="@+id/unSearch"
             android:layout_width="wrap_content"
@@ -51,5 +50,7 @@
             android:layout_height="wrap_content"
             android:onClick="findByNumber"
             android:text="Search for Friend " />
+
+
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

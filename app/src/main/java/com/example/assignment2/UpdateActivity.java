@@ -1,5 +1,6 @@
 package com.example.assignment2;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -21,6 +22,8 @@ public class UpdateActivity extends AppCompatActivity {
         setContentView(R.layout.activity_update);
         myDB = new DatabseHelper(this);
 
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle("Update Your Friends Details!");
         un = findViewById(R.id.txtUsername);
         em = findViewById(R.id.txtEmail);
         pn = findViewById(R.id.txtNumber);
@@ -48,10 +51,13 @@ public class UpdateActivity extends AppCompatActivity {
                 un.getText().toString(),
                 em.getText().toString(),
                 pn.getText().toString());
-        if (isUpdate == true)
+
+        if (isUpdate == true) {
             Toast.makeText(UpdateActivity.this, "Data Update", Toast.LENGTH_LONG).show();
-        else
+           startActivity(new Intent(this, Launch.class));
+        } else {
             Toast.makeText(UpdateActivity.this, "Data not Updated", Toast.LENGTH_LONG).show();
+        }
     }
 
 }

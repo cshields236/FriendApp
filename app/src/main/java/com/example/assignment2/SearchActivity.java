@@ -1,10 +1,12 @@
 package com.example.assignment2;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
@@ -20,6 +22,9 @@ public class SearchActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
         myDB = new DatabseHelper(this);
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle("Search for Friends");
     }
 
     public void findByUsername(View view) {
@@ -49,6 +54,9 @@ public class SearchActivity extends AppCompatActivity {
 
 
     }
+    public void Return (View v)
+    {  startActivity(new Intent(this, Launch.class));}
+
 
 
     public void showMessage(String title, String message) {

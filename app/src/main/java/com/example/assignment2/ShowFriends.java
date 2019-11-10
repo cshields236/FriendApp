@@ -1,5 +1,6 @@
 package com.example.assignment2;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -28,6 +29,8 @@ public class ShowFriends extends AppCompatActivity implements MyAdapter.OnFriend
         myDB = new DatabseHelper(this);
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
 
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle("All Your Friends!");
 
         recyclerView.setHasFixedSize(true);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);

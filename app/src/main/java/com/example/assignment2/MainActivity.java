@@ -1,5 +1,6 @@
 package com.example.assignment2;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -31,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
         myDB = new DatabseHelper(this);
 
 
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle("Add New Friends!");
     }
 
     public void register(View v) {
@@ -88,4 +91,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
+    public void Return (View v)
+    {  startActivity(new Intent(this, Launch.class));}
 }
