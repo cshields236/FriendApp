@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 //TODO
@@ -22,7 +23,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
     Friend friend;
     ArrayList<Friend> friends = new ArrayList<>();
-    ArrayList<Friend> friendsFromDB = new ArrayList<>();
+
     DatabseHelper myDB;
 
     @Override
@@ -48,18 +49,14 @@ public class MainActivity extends AppCompatActivity {
         String phoneNum = pn.getText().toString();
 
 
-//        Cursor res = myDB.getAllData();
-//        if (res.getCount() == 0) {
-//
-//            Toast.makeText(this, "Nothing Found", Toast.LENGTH_LONG).show();
-//
-//        } else {
-//            StringBuffer buffer = new StringBuffer();
-//            while (res.moveToNext()) {
-//
-//                Friend friend = new Friend(res.getString(1), res.getString(2), Integer.parseInt(res.getString(3)));
-//                friendsFromDB.add(friend);
-//            }
+
+        DatabseHelper databaseHelper = new DatabseHelper(getApplicationContext());
+        List<Friend> byNumber = databaseHelper.searchByNumber(phoneNum);
+
+
+        List<Friend> byUsername = databaseHelper.searchByUsername(username);
+
+        List<Friend> byEmail = databaseHelper.searchByEmail(email);
 
 
         if (username.isEmpty() || email.isEmpty() || phoneNum.isEmpty()) {
@@ -74,10 +71,15 @@ public class MainActivity extends AppCompatActivity {
         } else {
             Friend f1 = new Friend(username, email, Integer.parseInt(phoneNum));
             friends.add(f1);
-            if (friendsFromDB.contains(f1)) {
+            if (byUsername != null) {
 
-                Toast.makeText(this, "Friend already in database", Toast.LENGTH_LONG).show();
-            } else {
+                Toast.makeText(this, "Friend With This Username Already Added", Toast.LENGTH_LONG).show();
+            }else if (byNumber != null){
+                Toast.makeText(this, "Number already In use", Toast.LENGTH_LONG).show();
+            }else if (byEmail != null){
+                Toast.makeText(this, "Email Already In Use", Toast.LENGTH_LONG).show();
+            }
+            else {
                 myDB.insertData(username, email, Integer.parseInt(phoneNum));
                 Toast.makeText(this, username + " Added to your Friends List!", Toast.LENGTH_LONG).show();
                 un.setText("");

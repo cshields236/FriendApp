@@ -96,6 +96,27 @@ public class DatabseHelper extends SQLiteOpenHelper {
         }
         return friends;
     }
+    public List<Friend> searchByEmail(String email) {
+        List<Friend> friends = null;
+        try {
+            SQLiteDatabase sqLiteDatabase = getReadableDatabase();
+            Cursor cursor = sqLiteDatabase.rawQuery("select * from " + TABLE_NAME + " where email" + " like ?", new String[]{"%" + email + "%"});
+            if (cursor.moveToFirst()) {
+                friends = new ArrayList<Friend>();
+                do {
+                    Friend f = new Friend();
+                    f.setUsername(cursor.getString(1));
+                    f.setEmail(cursor.getString(2));
+                    f.setPhoneNum(cursor.getInt(3));
+
+                    friends.add(f);
+                } while (cursor.moveToNext());
+            }
+        } catch (Exception e) {
+            friends = null;
+        }
+        return friends;
+    }
 
 
 

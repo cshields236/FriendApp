@@ -54,8 +54,6 @@ public class SearchActivity extends AppCompatActivity {
 
 
     }
-    public void Return (View v)
-    {  startActivity(new Intent(this, Launch.class));}
 
 
 
