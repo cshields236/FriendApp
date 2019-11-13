@@ -61,6 +61,8 @@
         android:onClick="updateData"
         android:text="Update Details "
         android:textAlignment="center"
+        android:textColor="#FFFFFCFC"
+        android:background="@drawable/roundbutton"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

@@ -11,15 +11,18 @@
         android:fontFamily="sans-serif-light"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:text="TextView"
+        android:textSize="20dp"
+        />
 
     <TextView
         android:id="@+id/email"
-        android:fontFamily="sans-serif-light"
-        android:layout_marginLeft="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:layout_marginLeft="10dp"
+        android:fontFamily="sans-serif-light"
+        android:text="TextView"
+        android:textSize="15dp"/>
 
     <TextView
         android:id="@+id/number"
@@ -27,6 +30,7 @@
         android:layout_marginLeft="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:text="TextView"
+        android:textSize="15dp"/>
 
 </LinearLayout>

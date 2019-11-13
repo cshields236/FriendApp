@@ -39,16 +39,16 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     }
 
 
-
     @Override
     public int getItemCount() {
         return friends.size();
     }
 
 
-    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
         public TextView name, email, number;
         OnFriendListener onFriendListener;
+
         public MyViewHolder(View view, OnFriendListener onFriendListener) {
             super(view);
             name = (TextView) view.findViewById(R.id.name);
@@ -57,6 +57,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             this.onFriendListener = onFriendListener;
 
             view.setOnClickListener(this);
+            view.setOnLongClickListener(this);
         }
 
         @Override
@@ -64,9 +65,17 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             onFriendListener.onFriendClick(getAdapterPosition());
 
         }
+
+        @Override
+        public boolean onLongClick(View v) {
+            onFriendListener.onFriendLongClick(getAdapterPosition());
+            return true;
+        }
     }
-    public interface OnFriendListener{
+
+    public interface OnFriendListener {
         void onFriendClick(int position);
+        void onFriendLongClick(int position);
     }
 
 }

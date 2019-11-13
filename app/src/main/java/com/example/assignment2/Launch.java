@@ -18,7 +18,7 @@ public class Launch extends AppCompatActivity {
         ImageView add = findViewById(R.id.imageView3);
         ImageView view = findViewById(R.id.imageView6);
         ImageView uodate = findViewById (R.id.imageView16);
-        ImageView search  = findViewById(R.id.imageView15);
+        ImageView search  = findViewById(R.id.imageview1);
 
 
 

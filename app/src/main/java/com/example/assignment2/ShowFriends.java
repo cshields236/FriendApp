@@ -13,8 +13,11 @@ import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import java.util.ArrayList;
+
+import static android.widget.Toast.LENGTH_LONG;
 
 public class ShowFriends extends AppCompatActivity implements MyAdapter.OnFriendListener {
     private static final String TAG = "CLICKED";
@@ -76,10 +79,17 @@ public class ShowFriends extends AppCompatActivity implements MyAdapter.OnFriend
     public void onFriendClick(int position) {
         friends.get(position);
 
+       showMessage("Success, " +  friends.get(position).getUsername() + " Found!", "Username: " + friends.get(position).getUsername() + "\nEmail: " + friends.get(position).getEmail() + "\nPhone Number: " + friends.get(position).getPhoneNum());
+    }
+
+    @Override
+    public void onFriendLongClick(int position) {
+        friends.get(position);
+
         Intent intent = new Intent(this, UpdateActivity.class);
         intent.putExtra("selected_friend", friends.get(position));
 
         startActivity(intent);
-
     }
+
 }

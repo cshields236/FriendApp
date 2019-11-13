@@ -7,50 +7,92 @@
     tools:context=".SearchActivity">
 
 
-    <LinearLayout
-        android:layout_width="423dp"
-        android:layout_height="733dp"
-        android:orientation="vertical"
+    <EditText
+        android:id="@+id/unSearch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="98dp"
+        android:layout_marginTop="69dp"
+        android:ems="10"
+        android:hint="Username"
+        android:inputType="textPersonName"
+        android:textAlignment="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/searchBtn"
+        android:layout_width="120dp"
+        android:layout_height="37dp"
+        android:layout_marginStart="99dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="115dp"
+        android:background="@drawable/roundbutton"
+        android:onClick="findByUsername"
+        android:text="Search for Friend "
+        android:textColor="#FFFFFCFC"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.597"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/unSearch" />
+
+    <EditText
+        android:id="@+id/numSearch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="96dp"
+        android:layout_marginTop="24dp"
+        android:ems="10"
+        android:hint="Phone Number"
+        android:inputType="textPersonName"
+        android:textAlignment="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/searchBtn" />
+
+    <Button
+        android:id="@+id/numberSearch"
+        android:layout_width="120dp"
+        android:layout_height="37dp"
+        android:layout_marginStart="99dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="115dp"
+        android:background="@drawable/roundbutton"
+        android:onClick="findByNumber"
+        android:text="Search for Friend "
+        android:textColor="#FFFFFCFC"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.597"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/numSearch" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="253dp"
+        android:layout_height="464dp"
+        android:layout_marginStart="73dp"
+        android:layout_marginBottom="151dp"
+
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        android:textSize="20dp"
+        />
 
-        <EditText
-            android:id="@+id/unSearch"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="96dp"
-            android:layout_marginTop="201dp"
-            android:ems="10"
-            android:hint="Username"
-            android:inputType="textPersonName"
-            android:textAlignment="center" />
-
-        <Button
-            android:id="@+id/searchBtn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="findByUsername"
-            android:text="Search For Friend " />
-
-        <EditText
-            android:id="@+id/numSearch"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="99dp"
-            android:layout_marginTop="126dp"
-            android:ems="10"
-            android:hint="Phone Number"
-            android:inputType="textPersonName"
-            android:textAlignment="center" />
+    <Button
+        android:id="@+id/ed"
+        android:layout_width="120dp"
+        android:layout_height="37dp"
+        android:layout_marginStart="99dp"
+        android:layout_marginTop="480dp"
+        android:layout_marginEnd="115dp"
+        android:background="@drawable/roundbutton"
+        android:onClick="edit"
+        android:text="Edit"
+        android:textColor="#FFFFFCFC"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.597"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/unSearch" />
 
 
-        <Button
-            android:id="@+id/numberSearch"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="findByNumber"
-            android:text="Search for Friend " />
-
-
-    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
