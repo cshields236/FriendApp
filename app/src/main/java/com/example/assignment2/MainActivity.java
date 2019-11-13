@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "Data Not Inserted, email must be formatted correctly", Toast.LENGTH_LONG).show();
             em.setError("Email must be formatted correctly");
         } else {
-            Friend f1 = new Friend(username, email, Integer.parseInt(phoneNum));
+            Friend f1 = new Friend(username, email,phoneNum);
             friends.add(f1);
             if (byUsername != null) {
 
@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
                 em.setError("Email Already In Use");
             }
             else {
-                myDB.insertData(username, email, Integer.parseInt(phoneNum));
+                myDB.insertData(username, email,phoneNum);
                 Toast.makeText(this, username + " Added to your Friends List!", Toast.LENGTH_LONG).show();
                 un.setText("");
                 em.setText("");

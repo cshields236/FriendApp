@@ -6,6 +6,7 @@
 
     <TextView
         android:id="@+id/name"
+        android:layout_marginLeft="5dp"
         android:textStyle="bold"
         android:fontFamily="sans-serif-light"
         android:layout_width="match_parent"
@@ -15,6 +16,7 @@
     <TextView
         android:id="@+id/email"
         android:fontFamily="sans-serif-light"
+        android:layout_marginLeft="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="TextView" />
@@ -22,6 +24,7 @@
     <TextView
         android:id="@+id/number"
         android:fontFamily="sans-serif-light"
+        android:layout_marginLeft="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="TextView" />

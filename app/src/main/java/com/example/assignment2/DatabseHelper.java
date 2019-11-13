@@ -22,7 +22,7 @@ public class DatabseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create table " + TABLE_NAME + " (ID INTEGER PRIMARY KEY AUTOINCREMENT,USERNAME TEXT,EMAIL TEXT,PHONENUM INTEGER)");
+        db.execSQL("create table " + TABLE_NAME + " (ID INTEGER PRIMARY KEY AUTOINCREMENT,USERNAME TEXT,EMAIL TEXT,PHONENUM TEXT)");
     }
 
     @Override
@@ -31,7 +31,8 @@ public class DatabseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public boolean insertData(String username, String email, int phoneNum) {
+
+    public boolean insertData(String username, String email, String phoneNum) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("USERNAME", username);
@@ -64,7 +65,7 @@ public class DatabseHelper extends SQLiteOpenHelper {
                     Friend f = new Friend();
                     f.setUsername(cursor.getString(1));
                     f.setEmail(cursor.getString(2));
-                    f.setPhoneNum(cursor.getInt(3));
+                    f.setPhoneNum(cursor.getString(3));
 
                     friends.add(f);
                 } while (cursor.moveToNext());
@@ -86,7 +87,7 @@ public class DatabseHelper extends SQLiteOpenHelper {
                     Friend f = new Friend();
                     f.setUsername(cursor.getString(1));
                     f.setEmail(cursor.getString(2));
-                    f.setPhoneNum(cursor.getInt(3));
+                    f.setPhoneNum(cursor.getString(3));
 
                     friends.add(f);
                 } while (cursor.moveToNext());
@@ -107,7 +108,7 @@ public class DatabseHelper extends SQLiteOpenHelper {
                     Friend f = new Friend();
                     f.setUsername(cursor.getString(1));
                     f.setEmail(cursor.getString(2));
-                    f.setPhoneNum(cursor.getInt(3));
+                    f.setPhoneNum(cursor.getString(3));
 
                     friends.add(f);
                 } while (cursor.moveToNext());

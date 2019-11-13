@@ -6,10 +6,10 @@ import android.os.Parcelable;
 public class Friend implements Parcelable {
 
     private String username;
-    private String email;
-    private int phoneNum;
+    private  String email;
+    private String phoneNum;
 
-    public Friend(String username, String email, int phoneNum) {
+    public Friend(String username, String email, String phoneNum) {
         this.username = username;
         this.email = email;
         this.phoneNum = phoneNum;
@@ -22,7 +22,7 @@ public class Friend implements Parcelable {
     protected Friend(Parcel in) {
         username = in.readString();
         email = in.readString();
-        phoneNum = in.readInt();
+        phoneNum = in.readString();
     }
 
     public static final Creator<Friend> CREATOR = new Creator<Friend>() {
@@ -53,11 +53,11 @@ public class Friend implements Parcelable {
         this.email = email;
     }
 
-    public int getPhoneNum() {
+    public String getPhoneNum() {
         return phoneNum;
     }
 
-    public void setPhoneNum(int phoneNum) {
+    public void setPhoneNum(String phoneNum) {
         this.phoneNum = phoneNum;
     }
 
@@ -78,6 +78,6 @@ public class Friend implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(username);
         dest.writeString(email);
-        dest.writeInt(phoneNum);
+        dest.writeString(phoneNum);
     }
 }

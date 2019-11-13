@@ -45,6 +45,7 @@ public class UpdateActivity extends AppCompatActivity {
         un = findViewById(R.id.txtUsername);
         em = findViewById(R.id.txtEmail);
         pn = findViewById(R.id.txtNumber);
+
         boolean isUpdate = myDB.updateData(
                 un.getText().toString(),
                 em.getText().toString(),
@@ -53,6 +54,7 @@ public class UpdateActivity extends AppCompatActivity {
         if (isUpdate == true) {
             Toast.makeText(UpdateActivity.this, "Data Update", Toast.LENGTH_LONG).show();
             startActivity(new Intent(this, ShowFriends.class));
+
         } else {
             Toast.makeText(UpdateActivity.this, "Data not Updated", Toast.LENGTH_LONG).show();
         }

@@ -23,7 +23,6 @@ public class Launch extends AppCompatActivity {
 
 
 
-
     }
     public void Add (View view){
         Intent intent;

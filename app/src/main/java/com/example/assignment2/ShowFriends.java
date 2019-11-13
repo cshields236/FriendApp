@@ -25,31 +25,32 @@ public class ShowFriends extends AppCompatActivity implements MyAdapter.OnFriend
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_show_friends);
         myDB = new DatabseHelper(this);
+
+        setContentView(R.layout.activity_show_friends);
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
-
         ActionBar actionBar = getSupportActionBar();
-
         actionBar.setTitle("All Your Friends!");
+
+
+
+
 
         recyclerView.setHasFixedSize(true);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
 
         Cursor res = myDB.getAllData();
-        if(res.getCount()==0)
-        {
+        if (res.getCount() == 0) {
             //show message
             showMessage("ERROR", "Nothing Found");
-         //   startActivity(new Intent(this, Launch.class));
-            return;
-        }
-        else{
-            StringBuffer buffer = new StringBuffer();
-            while(res.moveToNext()){
 
-                Friend friend = new Friend( res.getString(1),res.getString(2),Integer.parseInt(res.getString(3)));
+            return;
+        } else {
+            StringBuffer buffer = new StringBuffer();
+            while (res.moveToNext()) {
+
+                Friend friend = new Friend(res.getString(1), res.getString(2), res.getString(3));
                 friends.add(friend);
             }
         }
@@ -80,6 +81,5 @@ public class ShowFriends extends AppCompatActivity implements MyAdapter.OnFriend
 
         startActivity(intent);
 
-        Log.d(TAG, "onFriendClick: " + friends.get(position).getUsername());
     }
 }
