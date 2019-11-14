@@ -79,7 +79,8 @@ public class ShowFriends extends AppCompatActivity implements MyAdapter.OnFriend
     public void onFriendClick(int position) {
         friends.get(position);
 
-       showMessage("Success, " +  friends.get(position).getUsername() + " Found!", "Username: " + friends.get(position).getUsername() + "\nEmail: " + friends.get(position).getEmail() + "\nPhone Number: " + friends.get(position).getPhoneNum());
+       showMessage(  friends.get(position).getUsername() + "'s Profile:", "Username: " + friends.get(position).getUsername() + "\nEmail: " + friends.get(position).getEmail() + "\nPhone Number: " + friends.get(position).getPhoneNum());
+            Toast.makeText(ShowFriends.this, "Hold Down User to Edit", Toast.LENGTH_SHORT).show();
     }
 
     @Override
