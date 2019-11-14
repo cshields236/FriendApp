@@ -36,9 +36,6 @@ public class ShowFriends extends AppCompatActivity implements MyAdapter.OnFriend
         actionBar.setTitle("All Your Friends!");
 
 
-
-
-
         recyclerView.setHasFixedSize(true);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
@@ -71,6 +68,7 @@ public class ShowFriends extends AppCompatActivity implements MyAdapter.OnFriend
         builder.setCancelable(true);
         builder.setTitle(title);
         builder.setMessage(message);
+        builder.setIcon(R.drawable.friendship);
         builder.show();
     }
 
@@ -79,8 +77,8 @@ public class ShowFriends extends AppCompatActivity implements MyAdapter.OnFriend
     public void onFriendClick(int position) {
         friends.get(position);
 
-       showMessage(  friends.get(position).getUsername() + "'s Profile:", "Username: " + friends.get(position).getUsername() + "\nEmail: " + friends.get(position).getEmail() + "\nPhone Number: " + friends.get(position).getPhoneNum());
-            Toast.makeText(ShowFriends.this, "Hold Down User to Edit", Toast.LENGTH_SHORT).show();
+        showMessage(friends.get(position).getUsername() + "'s Profile:", "Username: " + friends.get(position).getUsername() + "\nEmail: " + friends.get(position).getEmail() + "\nPhone Number: " + friends.get(position).getPhoneNum());
+        Toast.makeText(ShowFriends.this, "Hold Down User to Edit", Toast.LENGTH_SHORT).show();
     }
 
     @Override
